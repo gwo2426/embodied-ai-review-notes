@@ -1,26 +1,33 @@
-# Embodied AI Review Notes
+# Embodied Perception: Challenges and Design Principles
 
-这是我在参与具身智能（Embodied AI）机器人相关文献综述研究时的阅读笔记与总结。
+This repository contains my research notes and summaries for the review paper **"Embodied Perception: Challenges and Design Principles"**. 
 
-## 项目背景
+As part of a collaborative research project, I was responsible for **Section 2**, which systematically analyzes the core challenges of embodied perception and proposes fundamental design principles for next-generation robotic systems.
 
-*   **研究主题**：具身智能机器人物理层面：挑战与设计原则
-*   **负责章节**：Section 2 (Embodied Perception: Challenges and Design Principles)
-*   **核心内容**：系统梳理了具身感知面临的五大挑战与四项设计原则，探讨了感知与运动控制的深度耦合机制。
+## 📄 Source Document
 
-## 目录结构
+The original review paper is included in this repository:
+* [Review Paper (PDF)](./review.pdf)
 
-*   [`review_notes.md`](./review_notes.md) - 关于综述 Section 2 的详细阅读笔记与总结。
-*   [`interview_prep_embodied_ai.md`](./interview_prep_embodied_ai.md) - 针对面试整理的具身智能物理层面里程碑论文深度解读，包含 Sim-to-Real、感知运动耦合、全身控制等前沿方向的分析。
+## 🎯 Research Focus: Section 2
 
-## 核心观点摘要
+My research focused on the intersection of physical constraints and perception algorithms in humanoid and legged robots. The traditional "perception-planning-control" paradigm often fails in dynamic, real-world physical interactions. My work systematically summarized the following aspects:
 
-具身智能的瓶颈不仅在于认知层面的大模型，更在于物理约束的克服。传统的“感知-规划-控制”分层架构在动态、复杂的物理交互中容易失效。未来的发展趋势在于：
+### Five Core Challenges in Embodied Perception
 
-1.  **感知与运动的深度耦合**：视觉与本体感受的动态融合，特别是在视觉失效时的本体感受补偿。
-2.  **形态感知表示**：在全身控制中处理高维度的动力学耦合，实现更自然、高表现力的运动。
-3.  **大规模并行强化学习**：利用 GPU 张量化物理仿真，加速 Sim-to-Real 的迁移。
+1. **Physical Constraints and Self-Occlusion**: The robot's own morphology and actions frequently occlude its vision during physical interaction.
+2. **High-Frequency Impact and Dynamic Environments**: Locomotion (e.g., walking, parkour) introduces severe physical impacts, leading to sensor noise and drift.
+3. **Real-time Requirements under Limited Compute**: Embodied perception demands extreme real-time processing with limited onboard computational resources to ensure control stability.
+4. **Asynchronous and Heterogeneous Multimodal Data**: Significant disparities exist in sampling rates and data structures across vision, proprioception (joint angles, torques), and tactile sensors.
+5. **The Sim-to-Real Gap**: The discrepancy between idealized sensor models in simulation and physical noise/friction in the real world hinders direct policy transfer.
 
-## 联系方式
+### Four Key Design Principles
 
-欢迎通过 GitHub Issues 或其他方式与我交流探讨具身智能相关的技术问题。
+1. **Proprioception-grounded Egocentric Perception**: When visual information is unreliable (due to occlusion or lighting) or delayed, proprioception serves as the ground truth and the last line of defense for maintaining physical balance.
+2. **Controllable Multimodal Redundancy**: Building redundant perception channels and dynamically adjusting modality weights (e.g., relying on vision on flat ground, but shifting weight to proprioception/tactile sensing on snow or grass).
+3. **Morphology-aware Representation**: Perception systems must be tightly coupled with the robot's physical morphology (DoF, dynamics). Perception is action-conditioned.
+4. **Internal Model as a Bridge**: Establishing internal dynamic models of the physical world to compensate for sensor delays and missing data through future state prediction.
+
+## 🛠️ Key Takeaways
+
+The fundamental difference between embodied perception and traditional computer vision lies in its **activeness** and **physical interactivity**. Robots do not passively receive images; they actively acquire information through actions (Active Perception) and verify perception through physical contact. This deep coupling of "perception as action, action as perception" is the key to achieving Artificial General Intelligence (AGI) in the physical world.
